@@ -24,10 +24,24 @@ export class ChatService {
       if (error) {
         alert(error.message);
       }
-
-      return data;
     } catch (e: any) {
       alert(e.message);
+    }
+  }
+
+  async allChat(): Promise<any> {
+    try {
+      const { data, error } = await this.supabase
+        .from('chat')
+        .select('*, users(*)');
+
+      if (error) {
+        alert(error.message);
+      }
+
+      return data;
+    } catch (err) {
+      throw err;
     }
   }
 }

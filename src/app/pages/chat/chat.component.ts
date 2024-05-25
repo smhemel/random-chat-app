@@ -1,6 +1,7 @@
 import { Component, effect, inject, signal } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { DeleteModalComponent } from './../../modal/delete-modal/delete-modal.component';
 import {
   FormBuilder,
   FormGroup,
@@ -14,7 +15,7 @@ import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-chat',
   standalone: true,
-  imports: [ReactiveFormsModule, DatePipe],
+  imports: [ReactiveFormsModule, DatePipe, DeleteModalComponent],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.css',
 })
@@ -44,6 +45,7 @@ export class ChatComponent {
       .then((res) => {
         alert('message successfully saved.');
         this.chatForm.reset();
+        this.onListChat();
       })
       .catch((err) => {
         alert(err.message);
@@ -63,6 +65,10 @@ export class ChatComponent {
       .catch((err) => {
         alert(err.message);
       });
+  }
+
+  openDropDown(msg: Chat) {
+    this.chatService.selectedChats(msg);
   }
 
   async logOut() {

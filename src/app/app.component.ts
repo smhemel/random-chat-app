@@ -12,5 +12,5 @@ import { ChatComponent } from './pages/chat/chat.component';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'ng-chat';
+  title = 'random-chat';
 }

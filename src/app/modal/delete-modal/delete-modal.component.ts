@@ -14,11 +14,7 @@ export class DeleteModalComponent {
   private router = inject(Router);
   dismiss = signal(false);
 
-  constructor() {
-    effect(() => {
-      console.log(this.chatService.savedChat());
-    });
-  }
+  constructor() {}
 
   deleteChat() {
     const id = (this.chatService.savedChat() as { id: string }).id;
@@ -37,7 +33,6 @@ export class DeleteModalComponent {
           });
       })
       .catch((err) => {
-        console.log(err);
         alert(err.message);
       });
   }
